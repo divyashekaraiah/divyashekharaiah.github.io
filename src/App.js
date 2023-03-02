@@ -13,7 +13,7 @@ function App() {
   return (
     <>
       <AppProvider>
-        <BrowserRouter basename={"/xyz"}>
+        <BrowserRouter>
           <SearchForm />
           <BookList />
 
