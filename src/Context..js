@@ -23,6 +23,7 @@ const AppProvider = ({ children }) => {
             author_name,
             cover_i,
             edition_count,
+            resultTitle,
             first_publish_year,
             title,
           } = bookSingle;
@@ -31,6 +32,7 @@ const AppProvider = ({ children }) => {
             id: key,
             author_name: author_name,
             cover_id: cover_i,
+            resultTitle: resultTitle,
             edition_count: edition_count,
             first_publish_year: first_publish_year,
             title: title,
@@ -65,7 +67,7 @@ const AppProvider = ({ children }) => {
         loading,
         books,
         setSearchTerm,
-
+        resultTitle,
         setResultTitle,
       }}
     >
