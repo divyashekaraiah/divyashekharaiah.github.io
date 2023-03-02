@@ -17,25 +17,25 @@ const AppProvider = ({ children }) => {
       const { docs } = data;
 
       if (docs) {
-        const newBooks = docs.slice(0, 101).map((bookSingle) => {
+        const newBooks = docs.slice(0, 200).map((bookSingle) => {
           const {
             key,
             author_name,
+            publish_place,
             cover_i,
             edition_count,
-            resultTitle,
             first_publish_year,
             title,
           } = bookSingle;
 
           return {
             id: key,
-            author_name: author_name,
+            author: author_name,
             cover_id: cover_i,
-            resultTitle: resultTitle,
             edition_count: edition_count,
             first_publish_year: first_publish_year,
             title: title,
+            publish_place: publish_place,
           };
         });
 

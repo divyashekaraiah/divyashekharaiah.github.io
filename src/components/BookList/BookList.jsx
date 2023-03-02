@@ -58,7 +58,7 @@ import "./BookList.css";
 const BookList = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [postPerPage, setPostPerPage] = useState(10);
-  const { books, loading } = useGlobalContext();
+  const { books, loading, resultTitle } = useGlobalContext();
   // const booksWithCovers = books.map((singleBook) => {
   //   return {
   //     ...singleBook,
@@ -75,7 +75,7 @@ const BookList = () => {
   const pageNumbers = [];
   for (let i = 1; i < Math.ceil(array.length / postPerPage); i++)
     pageNumbers.push(i);
-  console.log(indexOfFirstPost, indexOfLastPost);
+  console.log(books.author_name);
 
   return (
     <>
@@ -84,7 +84,7 @@ const BookList = () => {
           <table className="table">
             <tr className="tr">
               <th className="th">Title and Subtitle</th>
-              <th className="th">Author </th>
+              {/* <th className="th">AUTHOR NAME </th> */}
               <th className="th">EDITION COUNT</th>
               <th className="th">First Publish year</th>
             </tr>
@@ -93,7 +93,7 @@ const BookList = () => {
               return (
                 <tr className="tr">
                   <td className="td">{item.title}</td>
-                  <td className="td">{item.author_name}</td>
+                  {/* <td className="td">{item.author_name.join(", ")}</td> */}
                   <td className="td">{item.edition_count}</td>
                   <td className="td">{item.first_publish_year}</td>
                 </tr>
@@ -101,26 +101,9 @@ const BookList = () => {
             })}
           </table>
         ) : (
-          <table className="table">
-            <tr className="tr">
-              <th className="th">Title and Subtitle</th>
-              <th className="th">Author </th>
-              <th className="th">EDITION COUNT</th>
-              <th className="th">First Publish year</th>
-            </tr>
-
-            {books.map((item, i) => {
-              return (
-                <tr className="tr">
-                  <td className="td">{item.title}</td>
-                  <td className="td">{item.author_name}</td>
-                  <td className="td">{item.edition_count}</td>
-                  <td className="td">{item.first_publish_year}</td>
-                </tr>
-              );
-            })}
-          </table>
+          <h2> {resultTitle}</h2>
         )}
+
         <div className="but">
           <button
             className="button"

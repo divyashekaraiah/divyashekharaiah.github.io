@@ -1,13 +1,11 @@
 import React, { useRef, useEffect } from "react";
-import { FaSearch } from "react-icons/fa";
-import { useNavigate } from "react-router-dom";
+
 import { useGlobalContext } from "../../Context.";
 import "./SearchForm.css";
 
 const SearchForm = () => {
   const { setSearchTerm, setResultTitle } = useGlobalContext();
   const searchText = useRef("");
-  const navigate = useNavigate();
 
   useEffect(() => searchText.current.focus(), []);
   const handleSubmit = (e) => {
@@ -19,8 +17,6 @@ const SearchForm = () => {
     } else {
       setSearchTerm(searchText.current.value);
     }
-
-    navigate("/book");
   };
 
   return (
@@ -29,7 +25,7 @@ const SearchForm = () => {
         <div class="relative mb-4 flex w-full flex-wrap items-stretch">
           <input
             type="search"
-            class="relative m-0 -mr-px block w-[1%] min-w-0 flex-auto rounded-l border border-solid border-neutral-300 bg-transparent bg-clip-padding px-3 py-1.5 text-base font-normal text-neutral-700 outline-none transition duration-300 ease-in-out focus:border-primary focus:text-neutral-700 focus:shadow-te-primary focus:outline-none dark:text-neutral-200 dark:placeholder:text-neutral-200"
+            class="relative m-0 -mr-px block w-[2%] min-w-0 flex-auto rounded-l border border-solid border-neutral-300 bg-transparent bg-clip-padding px-3 py-1.5 text-base font-normal text-neutral-700 outline-none transition duration-300 ease-in-out focus:border-primary focus:text-neutral-700 focus:shadow-te-primary focus:outline-none dark:text-neutral-200 dark:placeholder:text-neutral-200"
             placeholder="Search Book by Title/Author"
             aria-label="Search"
             aria-describedby="button-addon1"

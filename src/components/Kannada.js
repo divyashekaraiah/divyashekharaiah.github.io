@@ -32,7 +32,7 @@ export default function Arts() {
         <table className="table">
           <tr className="tr">
             <th className="th">Title and Subtitle</th>
-            {/* <th className="th">IA COLLECTION </th> */}
+            {/* <th className="th">AUTHOR NAME </th> */}
             <th className="th">EDITION COUNT</th>
             <th className="th">First Publish year</th>
           </tr>
@@ -41,7 +41,7 @@ export default function Arts() {
             return (
               <tr className="tr">
                 <td className="td">{item.title}</td>
-                {/* <td className="td">{item.ia_collection.join(", ")}</td> */}
+                {/* <td className="td">{item.author_name}</td> */}
                 <td className="td">{item.edition_count}</td>
                 <td className="td">{item.first_publish_year}</td>
               </tr>
