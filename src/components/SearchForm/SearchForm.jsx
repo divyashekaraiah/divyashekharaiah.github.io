@@ -1,6 +1,6 @@
 import React, { useRef, useEffect } from "react";
 
-import { useGlobalContext } from "../../Context.";
+import { useGlobalContext } from "../../Context";
 import "./SearchForm.css";
 
 const SearchForm = () => {

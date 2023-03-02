@@ -1,6 +1,6 @@
 // import SearchApp from "./SearchApp";
 
-import { AppProvider } from "./Context.";
+import { AppProvider } from "./Context";
 import "./App.css";
 import TopBar from "./components/TopBar";
 import Javascript from "./components/Javascript";

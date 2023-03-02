@@ -49,7 +49,7 @@
 // export default BookList;
 
 import React, { useState } from "react";
-import { useGlobalContext } from "../../Context.";
+import { useGlobalContext } from "../../Context";
 
 import Loading from "../Loader/Loader";
 
