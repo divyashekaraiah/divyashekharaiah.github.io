@@ -12,26 +12,23 @@ import SearchForm from "./components/SearchForm/SearchForm";
 function App() {
   return (
     <>
-      <AppProvider>
-        <div className="container">
-          <h3 style={{ color: "red" }}>Challenge 1</h3>
+      <div className="container">
+        <AppProvider>
           <BrowserRouter>
-            <SearchForm />
-            <BookList />
-            <h3 style={{ color: "red" }}>Challenge 2</h3>
-
+            <div>
+              <SearchForm />
+              <BookList />
+            </div>
             <TopBar />
 
             <Routes>
-              {/* <Route path="book" element={<BookList />} /> */}
-              {/* <Route exact path="/" element={<Search1 />} /> */}
               <Route exact path="/" element={<Javascript />} />
               <Route path="/kannada" element={<Kannada />} />
               <Route path="/art" element={<Arts />} />
             </Routes>
           </BrowserRouter>
-        </div>
-      </AppProvider>
+        </AppProvider>
+      </div>
     </>
   );
 }
