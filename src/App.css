@@ -18,11 +18,22 @@
   width: 35%;
   padding: 10px;
   outline: none;
-  border: 2px solid rgb(147, 119, 146);
+  border: 2px solid rgb(93, 21, 91);
   border-bottom: 2px solid #333;
   font-size: 20px;
   margin-bottom: 20px;
+  display: flex;
 }
+/* .fas{
+  width: 35%;
+    padding: 10px;
+    outline: none;
+    border: 2px solid rgb(93, 21, 91);
+    border-bottom: 2px solid #333;
+    font-size: 20px;
+    margin-bottom: 20px;
+    display: flex;
+} */
 @media screen and (max-width: 768px) {
   body{
     overflow-x: hidden;

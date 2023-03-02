@@ -8,7 +8,7 @@ export default function Arts() {
   const [error, setError] = useState("");
   useEffect(() => {
     setLoading("true");
-    fetch("http://openlibrary.org/subjects/arts.json")
+    fetch("https://openlibrary.org/subjects/arts.json")
       .then((response) => response.json())
       .then((data) => setData(data))
       .then(() => setLoading())
@@ -31,9 +31,9 @@ export default function Arts() {
       <div className="container">
         <table className="table">
           <tr className="tr">
-            <th className="th">Title</th>
-            <th className="th">Edition Count </th>
-
+            <th className="th">Title and Subtitle</th>
+            <th className="th">IA COLLECTION </th>
+            <th className="th">EDITION COUNT</th>
             <th className="th">First Publish year</th>
           </tr>
 
@@ -41,6 +41,7 @@ export default function Arts() {
             return (
               <tr className="tr">
                 <td className="td">{item.title}</td>
+                <td className="td">{item.ia_collection.join(", ")}</td>
                 <td className="td">{item.edition_count}</td>
                 <td className="td">{item.first_publish_year}</td>
               </tr>

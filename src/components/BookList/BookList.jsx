@@ -1,76 +1,91 @@
-import React from "react";
-import { useState, useEffect } from "react";
-import Search from "./Search";
-import "./App.css";
+// import React from "react";
+// import { useGlobalContext } from "../../Context.";
+// import Book from "../BookList/Book";
+// import Loading from "../Loader/Loader";
+// import coverImg from "../../images/cover_not_found.jpg";
+// import "./BookList.css";
 
-function SearchApp() {
-  const [data, setData] = useState("");
+// //https://covers.openlibrary.org/b/id/240727-S.jpg
 
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
+// const BookList = () => {
+//   const { books, loading, resultTitle } = useGlobalContext();
+//   const booksWithCovers = books.map((singleBook) => {
+//     return {
+//       ...singleBook,
+//       // // removing /works/ to get only id
+//       // id: singleBook.id.replace("/works/", ""),
+//       // cover_img: singleBook.cover_id
+//       //   ? `https://covers.openlibrary.org/b/id/${singleBook.cover_id}-L.jpg`
+//       //   : coverImg,
+//     };
+//   });
 
-  const [search, setSearch] = useState("");
-  const [searchResults, setSearchResults] = useState([]);
+//   if (loading) return <Loading />;
+
+//   return (
+//     <section className="booklist">
+//       <div className="container">
+//         <div className="section-title">
+//           {/* <h2>{resultTitle}</h2> */}
+//           <table className="table">
+//             <tr className="tr">
+//               <th className="th1">Title and Subtitle</th>
+//               <th className="th2">Author </th>
+//               <th className="th3">EDITION COUNT</th>
+//               <th className="th4">First Publish year</th>
+//             </tr>
+//           </table>
+//         </div>
+//         <div className="booklist-content grid">
+//           {booksWithCovers.slice(6, 16).map((item, index) => {
+//             return <Book key={index} {...item} />;
+//           })}
+//         </div>
+//       </div>
+//     </section>
+//   );
+// };
+
+// export default BookList;
+
+import React, { useState } from "react";
+import { useGlobalContext } from "../../Context.";
+
+import Loading from "../Loader/Loader";
+
+import "./BookList.css";
+
+const BookList = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [postPerPage, setPostPerPage] = useState(10);
-  useEffect(() => {
-    setLoading("true");
-    fetch("https://openlibrary.org/search.json?author=tolkien&sort=new")
-      .then((response) => response.json())
-      .then((data) => setData(data))
-      .then(() => setLoading())
-      .catch(setError);
-  }, []);
-  console.log(data);
-  if (loading) {
-    return <h1 style={{ textAlign: "center" }}>Loading...</h1>;
-  }
-  if (error) {
-    return <pre>{JSON.stringify(error, null, 2)}</pre>;
-  }
-  if (!data) {
-    return null;
-  }
-  let array = data.docs;
+  const { books, loading } = useGlobalContext();
+  // const booksWithCovers = books.map((singleBook) => {
+  //   return {
+  //     ...singleBook,
+  //   };
+  // });
+
+  if (loading) return <Loading />;
+
+  let array = books;
   const indexOfLastPost = currentPage * postPerPage;
   const indexOfFirstPost = indexOfLastPost - postPerPage;
   const currentPost = array.slice(indexOfFirstPost, indexOfLastPost);
+
   const pageNumbers = [];
   for (let i = 1; i < Math.ceil(array.length / postPerPage); i++)
     pageNumbers.push(i);
-
-  const searchHandler = (search) => {
-    setSearch(search);
-    if (search !== "") {
-      const newBookList = array.filter((book) => {
-        return Object.values(book)
-          .join("")
-          .toLowerCase()
-          .includes(search.toLowerCase());
-      });
-      setSearchResults(newBookList);
-    } else {
-      setSearchResults(array);
-    }
-  };
+  console.log(indexOfFirstPost, indexOfLastPost);
 
   return (
     <>
       <div className="container">
-        <div className="flex items-center">
-          <Search
-            term={search}
-            searchKeyword={searchHandler}
-            className="block w-full px-16 py-16 text-purple-700 bg-white border rounded-full focus:border-purple-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
-          />
-        </div>
-
-        {search.length < 1 ? (
+        {books.length !== 0 ? (
           <table className="table">
             <tr className="tr">
               <th className="th">Title and Subtitle</th>
               <th className="th">Author </th>
-              <th className="th">Latest Publish year</th>
+              <th className="th">EDITION COUNT</th>
               <th className="th">First Publish year</th>
             </tr>
 
@@ -79,7 +94,7 @@ function SearchApp() {
                 <tr className="tr">
                   <td className="td">{item.title}</td>
                   <td className="td">{item.author_name}</td>
-                  <td className="td">{item.publish_date}</td>
+                  <td className="td">{item.edition_count}</td>
                   <td className="td">{item.first_publish_year}</td>
                 </tr>
               );
@@ -90,16 +105,16 @@ function SearchApp() {
             <tr className="tr">
               <th className="th">Title and Subtitle</th>
               <th className="th">Author </th>
-              <th className="th">Latest Publish year</th>
+              <th className="th">EDITION COUNT</th>
               <th className="th">First Publish year</th>
             </tr>
 
-            {searchResults.map((item, i) => {
+            {books.map((item, i) => {
               return (
                 <tr className="tr">
                   <td className="td">{item.title}</td>
                   <td className="td">{item.author_name}</td>
-                  <td className="td">{item.publish_date}</td>
+                  <td className="td">{item.edition_count}</td>
                   <td className="td">{item.first_publish_year}</td>
                 </tr>
               );
@@ -148,6 +163,6 @@ function SearchApp() {
       </div>
     </>
   );
-}
+};
 
-export default SearchApp;
+export default BookList;
